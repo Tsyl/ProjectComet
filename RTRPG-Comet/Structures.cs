@@ -111,7 +111,7 @@ namespace Comet
             targetStat = Stat.Health;
             type = EffectActivationType.Instant;
             value = -10;
-        }`      `
+        }
     }
 
     class EffectContainer

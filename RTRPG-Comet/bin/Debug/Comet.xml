@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Comet</name>
+    </assembly>
+    <members>
+        <member name="T:Comet.Game1">
+            <summary>
+            This is the main type for your game.
+            </summary>
+        </member>
+        <member name="T:Comet.Game1.GameState">
+            <summary>
+            States of the Game.
+            </summary>
+        </member>
+        <member name="F:Comet.Game1.GameState.Menu">
+            <summary> The game is in a menu. </summary>
+        </member>
+        <member name="F:Comet.Game1.GameState.Fight">
+            <summary> The game is in a fight. </summary>
+        </member>
+        <member name="F:Comet.Game1.GameState.Paused">
+            <summary> The game is paused. </summary>
+        </member>
+        <member name="P:Comet.Game1.State">
+            <summary> Current state of the game. </summary>
+        </member>
+        <member name="M:Comet.Game1.#ctor">
+            <summary> The game manager. </summary>
+        </member>
+        <member name="M:Comet.Game1.Initialize">
+            <summary>
+            Allows the game to perform any initialization it needs to before starting to run.
+            This is where it can query for any required services and load any non-graphic
+            related content.  Calling base.Initialize will enumerate through any components
+            and initialize them as well.
+            </summary>
+        </member>
+        <member name="M:Comet.Game1.LoadContent">
+            <summary>
+            LoadContent will be called once per game and is the place to load
+            all of your content.
+            </summary>
+        </member>
+        <member name="M:Comet.Game1.UnloadContent">
+            <summary>
+            UnloadContent will be called once per game and is the place to unload
+            game-specific content.
+            </summary>
+        </member>
+        <member name="M:Comet.Game1.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Allows the game to run logic such as updating the world,
+            checking for collisions, gathering input, and playing audio.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values.</param>
+        </member>
+        <member name="M:Comet.Game1.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            This is called when the game should draw itself.
+            </summary>
+            <param name="gameTime">Provides a snapshot of timing values.</param>
+        </member>
+        <member name="T:Comet.Program">
+            <summary>
+            The main class.
+            </summary>
+        </member>
+        <member name="M:Comet.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Comet.Stat">
+            <summary>
+            Character Stats
+            </summary>
+        </member>
+        <member name="F:Comet.Stat.Health">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.CurrentLife">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.MaxLife">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.CurrentStamina">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.MaxStamina">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Regen">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Power">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Speed">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Endurance">
+            <summary> </summary>
+        </member>
+        <member name="T:Comet.CharacterStatus">
+            <summary>
+            The defense status of a character.
+            </summary>
+        </member>
+        <member name="F:Comet.CharacterStatus.Open">
+            <summary> The character receives standard damage from attacks. </summary>
+        </member>
+        <member name="F:Comet.CharacterStatus.Guarding">
+            <summary> The character receives reduced damage from attacks. </summary>
+        </member>
+        <member name="F:Comet.CharacterStatus.Dodging">
+            <summary> The character receives no damage from attacks. </summary>
+        </member>
+        <member name="T:Comet.SkillType">
+            <summary>
+            Types of Skills
+            </summary>
+        </member>
+        <member name="F:Comet.SkillType.Passive">
+            <summary> Skill is always active. </summary>
+        </member>
+        <member name="F:Comet.SkillType.Standard">
+            <summary> Skill is casted repeatedly until character is given another command or
+            either the user or targets are unable to fight. </summary>
+        </member>
+        <member name="F:Comet.SkillType.Steady">
+            <summary> Standard skill that happens continually after its cast. </summary>
+        </member>
+        <member name="F:Comet.SkillType.Special">
+            <summary> Skill that only affects a target once per cast. </summary>
+        </member>
+        <member name="T:Comet.EffectActivationType">
+            <summary>
+            Types of Effect Activations.
+            </summary>
+        </member>
+        <member name="F:Comet.EffectActivationType.Instant">
+            <summary> Effect happens on application. </summary>
+        </member>
+        <member name="F:Comet.EffectActivationType.Delayed">
+            <summary> Effect happens after its delay. </summary>
+        </member>
+        <member name="F:Comet.EffectActivationType.SenderReactive">
+            <summary> Effect happens after a character does something. </summary>
+        </member>
+        <member name="F:Comet.EffectActivationType.TargetReactive">
+            <summary> Effect happens after a character is hit by something. </summary>
+        </member>
+    </members>
+</doc>

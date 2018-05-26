@@ -49,6 +49,7 @@ namespace Comet
         public bool enemyCharacter2 { get; set; }
         public bool enemyCharacter3 { get; set; }
         public bool enemyCharacter4 { get; set; }
+        public bool sideModifier { get; set; }
 
         public InputManager()
         {
@@ -67,18 +68,19 @@ namespace Comet
             currentKeyboard = Keyboard.GetState();
             currentGamepad1 = GamePad.GetState(0);
 
-            alliedCharacter1 = IsKey(key_alliedCharacter1) || IsButton(button_character1);
-            alliedCharacter2 = IsKey(key_alliedCharacter2) || IsButton(button_character2);
-            alliedCharacter3 = IsKey(key_alliedCharacter3) || IsButton(button_character3);
-            alliedCharacter4 = IsKey(key_alliedCharacter4) || IsButton(button_character4);
+            sideModifier = IsButton(button_sideModifier);
+            alliedCharacter1 = IsKey(key_alliedCharacter1) || (IsButton(button_character1) && !IsButtonDown(button_sideModifier));
+            alliedCharacter2 = IsKey(key_alliedCharacter2) || (IsButton(button_character2) && !IsButtonDown(button_sideModifier));
+            alliedCharacter3 = IsKey(key_alliedCharacter3) || (IsButton(button_character3) && !IsButtonDown(button_sideModifier));
+            alliedCharacter4 = IsKey(key_alliedCharacter4) || (IsButton(button_character4) && !IsButtonDown(button_sideModifier));
             skill1 = IsKey(key_skill1) || IsButton(button_skill1);
             skill2 = IsKey(key_skill2) || IsButton(button_skill2);
             skill3 = IsKey(key_skill3) || IsButton(button_skill3);
             skill4 = IsKey(key_skill4) || IsButton(button_skill4);
-            enemyCharacter1 = IsKey(key_enemyCharacter1) || (IsButton(button_character1) && IsButton(button_sideModifier));
-            enemyCharacter2 = IsKey(key_enemyCharacter2) || (IsButton(button_character2) && IsButton(button_sideModifier));
-            enemyCharacter3 = IsKey(key_enemyCharacter3) || (IsButton(button_character3) && IsButton(button_sideModifier));
-            enemyCharacter4 = IsKey(key_enemyCharacter4) || (IsButton(button_character4) && IsButton(button_sideModifier));
+            enemyCharacter1 = IsKey(key_enemyCharacter1) || (IsButton(button_character1) && IsButtonDown(button_sideModifier));
+            enemyCharacter2 = IsKey(key_enemyCharacter2) || (IsButton(button_character2) && IsButtonDown(button_sideModifier));
+            enemyCharacter3 = IsKey(key_enemyCharacter3) || (IsButton(button_character3) && IsButtonDown(button_sideModifier));
+            enemyCharacter4 = IsKey(key_enemyCharacter4) || (IsButton(button_character4) && IsButtonDown(button_sideModifier));
         }
 
         public Vector2 GetCursorPosition()
@@ -86,9 +88,11 @@ namespace Comet
             return currentMouse.Position.ToVector2();
         }
 
-        public bool AnyKeyPress()
+        public bool Any()
         {
             if (currentKeyboard.GetPressedKeys().Length > 0 && lastKeyboard.GetPressedKeys().Length == 0)
+                return true;
+            if (IsButton(button_character1))
                 return true;
             return false;
         }

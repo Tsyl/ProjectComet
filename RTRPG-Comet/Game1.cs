@@ -94,7 +94,7 @@ namespace Comet
 
             if (State == GameState.Menu)
             {
-                if(input.AnyKeyPress())
+                if(input.Any())
                 {
                     fight = new Fight();
                 }
@@ -109,7 +109,7 @@ namespace Comet
             {
                 fight.Update(gameTime);
 
-                if (fight == null)
+                if (fight.isOver)
                 {
                     State = GameState.Menu;
                 }

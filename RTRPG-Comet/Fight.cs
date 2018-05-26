@@ -23,6 +23,7 @@ namespace Comet
 
         public Party leftParty { get; set; }
         public Party rightParty { get; set; }
+        public bool isOver { get; set; }
         Skill[] skills;
 
         Character selectedUser;
@@ -38,6 +39,7 @@ namespace Comet
             rightParty.Prepare();
 
             skills = new Skill[50];
+            isOver = false;
             selectState = SelectionState.User;
         }
 
@@ -46,13 +48,13 @@ namespace Comet
             // Selecting a character.
             if (selectState == SelectionState.User)
             {
-                if(input.alliedCharacter1)
+                if (input.alliedCharacter1)
                     selectedUser = leftParty.characters[0];
-                if (input.alliedCharacter2)
+                else if (input.alliedCharacter2)
                     selectedUser = leftParty.characters[1];
-                if (input.alliedCharacter3)
+                else if (input.alliedCharacter3)
                     selectedUser = leftParty.characters[2];
-                if (input.alliedCharacter4)
+                else if (input.alliedCharacter4)
                     selectedUser = leftParty.characters[3];
 
                 if (selectedUser != null)
@@ -63,62 +65,62 @@ namespace Comet
             {
                 if (input.alliedCharacter1)
                     selectedUser = leftParty.characters[0];
-                if (input.alliedCharacter2)
+                else if (input.alliedCharacter2)
                     selectedUser = leftParty.characters[1];
-                if (input.alliedCharacter3)
+                else if (input.alliedCharacter3)
                     selectedUser = leftParty.characters[2];
-                if (input.alliedCharacter4)
+                else if (input.alliedCharacter4)
                     selectedUser = leftParty.characters[3];
 
                 if (input.skill1)
                     selectedSkill = selectedUser.skills[0];
-                if (input.skill2)
+                else if (input.skill2)
                     selectedSkill = selectedUser.skills[1];
-                if (input.skill3)
+                else if (input.skill3)
                     selectedSkill = selectedUser.skills[2];
-                if (input.skill4)
+                else if (input.skill4)
                     selectedSkill = selectedUser.skills[3];
 
                 if (selectedUser == null)
                     selectState = SelectionState.User;
                 else if (selectedSkill != null)
-                    selectState = SelectionState.Target;
+                        selectState = SelectionState.Target;
             }
             // Selecting the target of said action.
             if (selectState == SelectionState.Target)
             {
                 if (input.skill1)
                     selectedSkill = selectedUser.skills[0];
-                if (input.skill2)
+                else if (input.skill2)
                     selectedSkill = selectedUser.skills[1];
-                if (input.skill3)
+                else if (input.skill3)
                     selectedSkill = selectedUser.skills[2];
-                if (input.skill4)
+                else if (input.skill4)
                     selectedSkill = selectedUser.skills[3];
-
-                if (input.alliedCharacter1)
-                    selectedTarget = leftParty.characters[0];
-                if (input.alliedCharacter2)
-                    selectedTarget = leftParty.characters[1];
-                if (input.alliedCharacter3)
-                    selectedTarget = leftParty.characters[2];
-                if (input.alliedCharacter4)
-                    selectedTarget = leftParty.characters[3];
+                
                 if (input.enemyCharacter1)
                     selectedTarget = rightParty.characters[0];
-                if (input.enemyCharacter2)
+                else if (input.enemyCharacter2)
                     selectedTarget = rightParty.characters[1];
-                if (input.enemyCharacter3)
+                else if (input.enemyCharacter3)
                     selectedTarget = rightParty.characters[2];
-                if (input.enemyCharacter4)
+                else if (input.enemyCharacter4)
                     selectedTarget = rightParty.characters[3];
+                else if (input.alliedCharacter1)
+                    selectedTarget = leftParty.characters[0];
+                else if (input.alliedCharacter2)
+                    selectedTarget = leftParty.characters[1];
+                else if (input.alliedCharacter3)
+                    selectedTarget = leftParty.characters[2];
+                else if (input.alliedCharacter4)
+                    selectedTarget = leftParty.characters[3];
 
                 if (selectedSkill == null)
                     selectState = SelectionState.Skill;
                 else if (selectedTarget != null)
                 {
                     selectedSkill.target = selectedTarget;
-                    for(int skillNum = 0; skillNum < skills.Length; skillNum++)
+                    for (int skillNum = 0; skillNum < skills.Length; skillNum++)
                     {
                         if (skills[skillNum] != null)
                             continue;
@@ -129,7 +131,9 @@ namespace Comet
                     selectedUser = null;
                     selectedSkill = null;
                     selectedTarget = null;
+                    selectState = SelectionState.User;
                 }
+                
             }
 
             for (int skillNum = 0; skillNum < skills.Length; skillNum++)
@@ -169,7 +173,7 @@ namespace Comet
                 Vector2 namePosition = new Vector2(leftPos, (height / (lpCharacters.Length)) * numberOfCharacter + offset);
                 Vector2 lifePosition = new Vector2(leftPos, (height / (lpCharacters.Length)) * numberOfCharacter + lifeOffset + offset);
                 Vector2 staminaPosition = new Vector2(leftPos, (height / (lpCharacters.Length)) * numberOfCharacter + staminaOffset + offset);
-                if(chr == selectedUser)
+                if (chr == selectedUser)
                     spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_SELECTED);
                 else
                     spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_UNSELECTED);
@@ -196,13 +200,14 @@ namespace Comet
             Vector2 DebugPos = new Vector2(340, 300);
             Vector2 DebugPos2 = new Vector2(340, 320);
             spriteBatch.DrawString(font, selectState.ToString(), DebugPos, Color.AliceBlue);
-            for (int skillNum = 0; skillNum < skills.Length; skillNum++) 
+            for (int skillNum = 0; skillNum < skills.Length; skillNum++)
             {
                 if (skills[skillNum] == null)
                     break;
 
-                spriteBatch.DrawString(font, skills[skillNum].name, new Vector2(DebugPos2.X, DebugPos2.Y+(20*(skillNum+1))), Color.AliceBlue);
+                spriteBatch.DrawString(font, skills[skillNum].name, new Vector2(DebugPos2.X, DebugPos2.Y + (20 * (skillNum + 1))), Color.AliceBlue);
             }
+            
         }   // Draw
     }
 }

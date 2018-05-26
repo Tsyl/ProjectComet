@@ -72,13 +72,13 @@ namespace Comet
             alliedCharacter3 = IsKey(key_alliedCharacter3) || IsButton(button_character3);
             alliedCharacter4 = IsKey(key_alliedCharacter4) || IsButton(button_character4);
             skill1 = IsKey(key_skill1) || IsButton(button_skill1);
-            skill2 = IsKey(key_skill1) || IsButton(button_skill1);
-            skill3 = IsKey(key_skill1) || IsButton(button_skill1);
-            skill4 = IsKey(key_skill1) || IsButton(button_skill1);
+            skill2 = IsKey(key_skill2) || IsButton(button_skill2);
+            skill3 = IsKey(key_skill3) || IsButton(button_skill3);
+            skill4 = IsKey(key_skill4) || IsButton(button_skill4);
             enemyCharacter1 = IsKey(key_enemyCharacter1) || (IsButton(button_character1) && IsButton(button_sideModifier));
-            enemyCharacter2 = IsKey(key_enemyCharacter1) || (IsButton(button_character1) && IsButton(button_sideModifier));
-            enemyCharacter3 = IsKey(key_enemyCharacter1) || (IsButton(button_character1) && IsButton(button_sideModifier));
-            enemyCharacter4 = IsKey(key_enemyCharacter1) || (IsButton(button_character1) && IsButton(button_sideModifier));
+            enemyCharacter2 = IsKey(key_enemyCharacter2) || (IsButton(button_character2) && IsButton(button_sideModifier));
+            enemyCharacter3 = IsKey(key_enemyCharacter3) || (IsButton(button_character3) && IsButton(button_sideModifier));
+            enemyCharacter4 = IsKey(key_enemyCharacter4) || (IsButton(button_character4) && IsButton(button_sideModifier));
         }
 
         public Vector2 GetCursorPosition()

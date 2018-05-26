@@ -26,7 +26,7 @@ namespace Comet
         };
         /// <summary> Current state of the game. </summary>
         public GameState State { get; set; }
-        InputManager input = InputManager.GetInstance();
+        InputManager input;
 
         Menu menu;
         Fight fight;
@@ -55,8 +55,7 @@ namespace Comet
                 Window.Title = "Comet";
             #endif
 
-
-
+            input = InputManager.GetInstance();
             base.Initialize();
         }
 
@@ -108,7 +107,7 @@ namespace Comet
 
             if (State == GameState.Fight)
             {
-
+                fight.Update(gameTime);
 
                 if (fight == null)
                 {

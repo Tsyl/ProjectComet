@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace Comet
 {
@@ -53,13 +54,46 @@ namespace Comet
                 if(skl != null)
                     skl.user = this;
             }
-        }
+        }   // PrepareForFight
 
         public void Update(GameTime gameTime)
         {
+            for (int effectNum = 0; effectNum < effects.Length; effectNum++)
+            {
+                if (effects[effectNum] == null)
+                    break;
+                effects[effectNum].Activate(this);
+                effects[effectNum] = null;
+            }
+
             if (currentSkill != null)
             {
-                currentSkill.currentCastTime
+                float seconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                currentSkill.remainingCastTime -= seconds;
+
+                if(currentSkill.remainingCastTime <= 0)
+                {
+
+                }
+            }
+        }   // Update
+
+        public void InflictEffect(Effect efct)
+        {
+            for(int effectNum = 0; effectNum < effects.Length; effectNum++)
+            {
+                if (effects[effectNum] != null)
+                    continue;
+                effects[effectNum] = efct;
+                break;
+            }
+        }
+
+        public void InflictEffect(Effect[] efcts)
+        {
+            foreach(Effect efct in efcts)
+            {
+                InflictEffect(efct);
             }
         }
     }

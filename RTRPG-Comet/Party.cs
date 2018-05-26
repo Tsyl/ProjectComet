@@ -1,4 +1,6 @@
-﻿namespace Comet
+﻿using Microsoft.Xna.Framework;
+
+namespace Comet
 {
     class Party
     {
@@ -21,6 +23,17 @@
                     break;
 
                 chr.PrepareForFight();
+            }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            foreach (Character chr in characters)
+            {
+                if (chr == null)
+                    break;
+
+                chr.Update(gameTime);
             }
         }
     }

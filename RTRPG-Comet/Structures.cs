@@ -82,7 +82,7 @@ namespace Comet
         public SkillType type { get; set; }
         public Effect[] effects { get; set; }
         public float castTime { get; set; }
-        public float currentCastTime { get; set; }
+        public float remainingCastTime { get; set; }
 
         public Skill()
         {
@@ -91,6 +91,18 @@ namespace Comet
             castTime = 1;
             effects = new Effect[1];
             effects[0] = new Effect();
+        }
+
+        public void Cast()
+        {
+            foreach(Effect efct in effects)
+            {
+                if (efct == null)
+                    break;
+
+                efct.Tune(user.power);
+                target.InflictEffect(effects);
+            }
         }
     }
 
@@ -111,6 +123,48 @@ namespace Comet
             targetStat = Stat.Health;
             type = EffectActivationType.Instant;
             value = -10;
+        }
+
+        public void Activate(Character chr)
+        {
+            switch(targetStat)
+            {
+                case Stat.CurrentLife:
+                    chr.currentLife += value;
+                    break;
+                case Stat.CurrentStamina:
+                    chr.currentStamina += value;
+                    break;
+                case Stat.Health:
+                    chr.currentStamina += value;
+                    if (chr.currentStamina < 0)
+                    {
+                        float diff = chr.currentStamina;
+                        chr.currentStamina = 0;
+                        chr.currentLife += diff;
+                    }
+                    break;
+                case Stat.MaxLife:
+                    chr.maxLife += value;
+                    break;
+                case Stat.MaxStamina:
+                    chr.maxStamina += value;
+                    break;
+                case Stat.Power:
+                    chr.power += value;
+                    break;
+                case Stat.Speed:
+                    chr.speed += value;
+                    break;
+                case Stat.Endurance:
+                    chr.endurance += value;
+                    break;
+            }
+        }
+
+        public void Tune(float power)
+        {
+            value *= power / 100;
         }
     }
 

@@ -55,6 +55,7 @@ namespace Comet
                 Window.Title = "Comet";
             #endif
 
+            DrawHelper.graphicsDevice = GraphicsDevice;
             input = InputManager.GetInstance();
             base.Initialize();
         }

@@ -22,6 +22,7 @@ namespace Comet
 
         public Skill[] skills { get; set; }
         public Effect[] effects { get; set; }
+        Skill selectedSkill { get; set; }
         Skill currentSkill { get; set; }
 
         public Character()
@@ -32,7 +33,7 @@ namespace Comet
             defaultStamina = 100;
             defaultRegen = 100;
 
-            power = 100;
+            power = 150;
             speed = 100;
             endurance = 100;
 
@@ -66,17 +67,31 @@ namespace Comet
                 effects[effectNum] = null;
             }
 
-            if (currentSkill != null)
+            if (selectedSkill != null)
             {
                 float seconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                currentSkill.remainingCastTime -= seconds;
+                currentSkill.castTime -= seconds;
 
-                if(currentSkill.remainingCastTime <= 0)
+                if(currentSkill.castTime <= 0)
                 {
-
+                    currentSkill.Cast();
+                    if(currentSkill.type == SkillType.Standard)
+                    {
+                        currentSkill = selectedSkill.Copy();
+                    }
+                    else
+                    {
+                        currentSkill = null;
+                    }
                 }
             }
         }   // Update
+
+        public void GiveCommand(Skill skill)
+        {
+            selectedSkill = skill;
+            currentSkill = selectedSkill.Copy();
+        }
 
         public void InflictEffect(Effect efct)
         {
@@ -95,6 +110,16 @@ namespace Comet
             {
                 InflictEffect(efct);
             }
+        }
+
+        public Skill GetSelectedSkill()
+        {
+            return selectedSkill;
+        }
+
+        public Skill GetCurrentSkill()
+        {
+            return currentSkill;
         }
     }
 }

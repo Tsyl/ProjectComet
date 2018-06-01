@@ -7,11 +7,6 @@ namespace Comet
 {
     class Fight
     {
-        readonly Color CHARACTER_UNSELECTED = Color.White;
-        readonly Color CHARACTER_SELECTED = Color.CornflowerBlue;
-        readonly Color CHARACTER_HEALTH = Color.Red;
-        readonly Color CHARACTER_STAMINA = Color.Yellow;
-
         public enum SelectionState
         {
             User,
@@ -43,6 +38,10 @@ namespace Comet
             selectState = SelectionState.User;
         }
 
+        /// <summary>
+        /// Controls the player's actions and keeps tabs on the skills that will be casted.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             // Selecting a character.
@@ -125,6 +124,7 @@ namespace Comet
                         if (skills[skillNum] != null)
                             continue;
                         skills[skillNum] = selectedSkill;
+                        selectedUser.GiveCommand(selectedSkill);
                         break;
                     }
 
@@ -136,77 +136,27 @@ namespace Comet
                 
             }
 
-            for (int skillNum = 0; skillNum < skills.Length; skillNum++)
-            {
-                if (skills[skillNum] == null)
-                    break;
-
-                skills[skillNum].Cast();
-                skills[skillNum] = null;
-            }
-
             leftParty.Update(gameTime);
             rightParty.Update(gameTime);
+
+            for (int skillNum = 0; skillNum < skills.Length; skillNum++)
+            {
+                skills[skillNum] = null;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
             const int leftPos = 15;
-            const int rightPos = 600;
-            const int height = 500;
+            const int rightPos = 500;
 
-            const int lifeOffset = 20;
-            const int staminaOffset = 40;
-
-            const int offset = 20;
-
-            Character[] lpCharacters = leftParty.characters;
-            Character[] rpCharacters = rightParty.characters;
-
-            for (int numberOfCharacter = 0; numberOfCharacter < lpCharacters.Length; numberOfCharacter++)
-            {
-                Character chr = lpCharacters[numberOfCharacter];
-
-                if (chr == null)
-                    break;
-
-                Vector2 namePosition = new Vector2(leftPos, (height / (lpCharacters.Length)) * numberOfCharacter + offset);
-                Vector2 lifePosition = new Vector2(leftPos, (height / (lpCharacters.Length)) * numberOfCharacter + lifeOffset + offset);
-                Vector2 staminaPosition = new Vector2(leftPos, (height / (lpCharacters.Length)) * numberOfCharacter + staminaOffset + offset);
-                if (chr == selectedUser)
-                    spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_SELECTED);
-                else
-                    spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_UNSELECTED);
-                spriteBatch.DrawString(font, String.Format("Life: {0}/{1}", chr.currentLife, chr.maxLife), lifePosition, Color.Red);
-                spriteBatch.DrawString(font, String.Format("Stamina: {0}/{1}", chr.currentStamina, chr.maxStamina), staminaPosition, Color.Yellow);
-            }
-
-            for (int numberOfCharacter = 0; numberOfCharacter < rpCharacters.Length; numberOfCharacter++)
-            {
-                Character chr = rpCharacters[numberOfCharacter];
-
-                if (chr == null)
-                    break;
-
-                Vector2 namePosition = new Vector2(rightPos, (height / rpCharacters.Length + 1) * numberOfCharacter + offset);
-                Vector2 lifePosition = new Vector2(rightPos, (height / rpCharacters.Length + 1) * numberOfCharacter + lifeOffset + offset);
-                Vector2 staminaPosition = new Vector2(rightPos, (height / rpCharacters.Length + 1) * numberOfCharacter + staminaOffset + offset);
-                spriteBatch.DrawString(font, chr.name, namePosition, Color.White);
-                spriteBatch.DrawString(font, String.Format("Life: {0}/{1}", chr.currentLife, chr.maxLife), lifePosition, Color.Red);
-                spriteBatch.DrawString(font, String.Format("Stamina: {0}/{1}", chr.currentStamina, chr.maxStamina), staminaPosition, Color.Yellow);
-            }
+            leftParty.DrawCharacterFrames(leftPos, selectedUser, spriteBatch, font);
+            rightParty.DrawCharacterFrames(rightPos, selectedUser, spriteBatch, font);
 
             // Debug Draw
             Vector2 DebugPos = new Vector2(340, 300);
             Vector2 DebugPos2 = new Vector2(340, 320);
             spriteBatch.DrawString(font, selectState.ToString(), DebugPos, Color.AliceBlue);
-            for (int skillNum = 0; skillNum < skills.Length; skillNum++)
-            {
-                if (skills[skillNum] == null)
-                    break;
-
-                spriteBatch.DrawString(font, skills[skillNum].name, new Vector2(DebugPos2.X, DebugPos2.Y + (20 * (skillNum + 1))), Color.AliceBlue);
-            }
             
         }   // Draw
     }

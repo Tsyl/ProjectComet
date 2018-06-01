@@ -59,7 +59,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DrawHelper.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Effect.cs" />
     <Compile Include="Fight.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="InputManager.cs" />
@@ -72,6 +74,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Skill.cs" />
     <Compile Include="Structures.cs" />
   </ItemGroup>
   <ItemGroup>

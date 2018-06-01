@@ -4,6 +4,26 @@
         <name>Comet</name>
     </assembly>
     <members>
+        <member name="T:Comet.BasicDraw">
+            <summary>
+            Used to draw programmatic visuals.
+            </summary>
+        </member>
+        <member name="M:Comet.BasicDraw.DrawRectangle(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draw a rectangle.
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="position"></param>
+            <param name="dimensions"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Comet.Fight.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Controls the player's actions and keeps tabs on the skills that will be casted.
+            </summary>
+            <param name="gameTime"></param>
+        </member>
         <member name="T:Comet.Game1">
             <summary>
             This is the main type for your game.

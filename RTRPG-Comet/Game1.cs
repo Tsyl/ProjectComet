@@ -30,6 +30,7 @@ namespace Comet
 
         Menu menu;
         Fight fight;
+        Player[] players;
 
         SpriteFont fightFont;
 
@@ -57,6 +58,8 @@ namespace Comet
 
             DrawHelper.graphicsDevice = GraphicsDevice;
             input = InputManager.GetInstance();
+            input.Initialize();
+            players = new Player[2];
             base.Initialize();
         }
 
@@ -95,9 +98,20 @@ namespace Comet
 
             if (State == GameState.Menu)
             {
-                if(input.Any())
+                foreach(Player p in input.players)
                 {
-                    fight = new Fight();
+                    if(p != null && p.inputs.joinGame)
+                    {
+                        if (players[0] == null)
+                            players[0] = p;
+                        else if (p != players[0] && players[1] == null)
+                            players[1] = p;
+                    }
+                }
+
+                if (players[1] != null)
+                {
+                    fight = new Fight(players[0], players[1]);
                 }
 
                 if (fight != null)
@@ -113,6 +127,8 @@ namespace Comet
                 if (fight.isOver)
                 {
                     State = GameState.Menu;
+                    fight = null;
+                    players = new Player[2];
                 }
             }
 

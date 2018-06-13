@@ -2,6 +2,18 @@
 
 namespace Comet
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum SelectionState
+    {
+        /// <summary> </summary>
+        User,
+        /// <summary> </summary>
+        Skill,
+        /// <summary> </summary>
+        Target
+    }
 
     /// <summary>
     /// Character Stats
@@ -33,6 +45,8 @@ namespace Comet
     /// </summary>
     public enum CharacterStatus
     {
+        /// <summary> The character is inactive. </summary>
+        Down,
         /// <summary> The character receives standard damage from attacks. </summary>
         Open,
         /// <summary> The character receives reduced damage from attacks. </summary>
@@ -62,14 +76,14 @@ namespace Comet
     /// </summary>
     public enum EffectActivationType
     {
-        /// <summary> Effect happens on application. </summary>
-        Instant,
-        /// <summary> Effect happens after its delay. </summary>
-        Delayed,
-        /// <summary> Effect happens after a character does something. </summary>
-        SenderReactive,
-        /// <summary> Effect happens after a character is hit by something. </summary>
-        TargetReactive
+        /// <summary> Effect activates upon being injected in the host. </summary>
+        OnSelfInjection,              
+        /// <summary> Effect activates upon the host being injected a different effect. </summary>
+        OnOtherInjection,
+        /// <summary> Effect activates upon the host prepping a skill. </summary>
+        OnHostReactionPrepping,
+        /// <summary> Effect activates upon the host casting a skill. </summary>
+        OnHostReactionCasting
     };
 
     class EffectContainer

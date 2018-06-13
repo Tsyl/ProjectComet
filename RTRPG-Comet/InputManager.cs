@@ -5,7 +5,7 @@ namespace Comet
 {
     class InputManager
     {
-        static InputManager instance = GetInstance();
+        static InputManager instance = new InputManager();
 
         MouseState lastMouse;
         MouseState currentMouse;
@@ -14,28 +14,32 @@ namespace Comet
         GamePadState lastGamepad1;
         GamePadState currentGamepad1;
 
-        Keys key_alliedCharacter1 = Keys.D1;
-        Keys key_alliedCharacter2 = Keys.D2;
-        Keys key_alliedCharacter3 = Keys.D3;
-        Keys key_alliedCharacter4 = Keys.D4;
-        Keys key_skill1 = Keys.Q;
-        Keys key_skill2 = Keys.W;
-        Keys key_skill3 = Keys.E;
-        Keys key_skill4 = Keys.R;
-        Keys key_enemyCharacter1 = Keys.U;
-        Keys key_enemyCharacter2 = Keys.I;
-        Keys key_enemyCharacter3 = Keys.O;
-        Keys key_enemyCharacter4 = Keys.P;
+        public Player[] players;
 
-        Buttons button_character1 = Buttons.A;
-        Buttons button_character2 = Buttons.B;
-        Buttons button_character3 = Buttons.X;
-        Buttons button_character4 = Buttons.Y;
-        Buttons button_skill1 = Buttons.DPadDown;
-        Buttons button_skill2 = Buttons.DPadLeft;
-        Buttons button_skill3 = Buttons.DPadRight;
-        Buttons button_skill4 = Buttons.DPadUp;
-        Buttons button_sideModifier = Buttons.LeftTrigger;
+        Keys key1_alliedCharacter1 = Keys.Up;
+        Keys key1_alliedCharacter2 = Keys.Left;
+        Keys key1_alliedCharacter3 = Keys.Down;
+        Keys key1_alliedCharacter4 = Keys.Right;
+        Keys key1_skill1 =           Keys.Q;
+        Keys key1_skill2 =           Keys.W;
+        Keys key1_skill3 =           Keys.E;
+        Keys key1_skill4 =           Keys.R;
+        Keys key1_enemyCharacter1 =  Keys.U;
+        Keys key1_enemyCharacter2 =  Keys.I;
+        Keys key1_enemyCharacter3 =  Keys.O;
+        Keys key1_enemyCharacter4 =  Keys.P;
+        Keys key1_joinGame =         Keys.Space;
+
+        Buttons button_character1 =     Buttons.A;
+        Buttons button_character2 =     Buttons.B;
+        Buttons button_character3 =     Buttons.X;
+        Buttons button_character4 =     Buttons.Y;
+        Buttons button_skill1 =         Buttons.DPadDown;
+        Buttons button_skill2 =         Buttons.DPadLeft;
+        Buttons button_skill3 =         Buttons.DPadRight;
+        Buttons button_skill4 =         Buttons.DPadUp;
+        Buttons button_sideModifier =   Buttons.LeftTrigger;
+        Buttons button_joinGame =       Buttons.Start;
 
         public bool alliedCharacter1 { get; set; }
         public bool alliedCharacter2 { get; set; }
@@ -58,6 +62,50 @@ namespace Comet
             currentGamepad1 = GamePad.GetState(0);
         }
 
+        public void Initialize()
+        {
+            players = new Player[6];
+            players[0] = new KeyboardPlayer(
+                             Keys.Up,
+                             Keys.Left,
+                             Keys.Down,
+                             Keys.Right,
+                             Keys.Q,
+                             Keys.W,
+                             Keys.E,
+                             Keys.R,
+                             Keys.A,
+                             Keys.S,
+                             Keys.D,
+                             Keys.F,
+                             Keys.Space);
+            players[1] = new KeyboardPlayer(
+                             Keys.NumPad5,
+                             Keys.NumPad1,
+                             Keys.NumPad2,
+                             Keys.NumPad3,
+                             Keys.U,
+                             Keys.I,
+                             Keys.O,
+                             Keys.P,
+                             Keys.J,
+                             Keys.K,
+                             Keys.L,
+                             Keys.OemSemicolon,
+                             Keys.NumPad7);
+            players[2] = new GamepadPlayer(
+                             Buttons.A,
+                             Buttons.B,
+                             Buttons.X,
+                             Buttons.Y,
+                             Buttons.DPadDown,
+                             Buttons.DPadLeft,
+                             Buttons.DPadRight,
+                             Buttons.DPadUp,
+                             Buttons.LeftTrigger,
+                             Buttons.Start);
+        }
+
         public void Update()
         {
             lastMouse = currentMouse;
@@ -68,19 +116,11 @@ namespace Comet
             currentKeyboard = Keyboard.GetState();
             currentGamepad1 = GamePad.GetState(0);
 
-            sideModifier = IsButton(button_sideModifier);
-            alliedCharacter1 = IsKey(key_alliedCharacter1) || (IsButton(button_character1) && !IsButtonDown(button_sideModifier));
-            alliedCharacter2 = IsKey(key_alliedCharacter2) || (IsButton(button_character2) && !IsButtonDown(button_sideModifier));
-            alliedCharacter3 = IsKey(key_alliedCharacter3) || (IsButton(button_character3) && !IsButtonDown(button_sideModifier));
-            alliedCharacter4 = IsKey(key_alliedCharacter4) || (IsButton(button_character4) && !IsButtonDown(button_sideModifier));
-            skill1 = IsKey(key_skill1) || IsButton(button_skill1);
-            skill2 = IsKey(key_skill2) || IsButton(button_skill2);
-            skill3 = IsKey(key_skill3) || IsButton(button_skill3);
-            skill4 = IsKey(key_skill4) || IsButton(button_skill4);
-            enemyCharacter1 = IsKey(key_enemyCharacter1) || (IsButton(button_character1) && IsButtonDown(button_sideModifier));
-            enemyCharacter2 = IsKey(key_enemyCharacter2) || (IsButton(button_character2) && IsButtonDown(button_sideModifier));
-            enemyCharacter3 = IsKey(key_enemyCharacter3) || (IsButton(button_character3) && IsButtonDown(button_sideModifier));
-            enemyCharacter4 = IsKey(key_enemyCharacter4) || (IsButton(button_character4) && IsButtonDown(button_sideModifier));
+            foreach(Player p in players)
+            {
+                if (p != null)
+                    p.Update();
+            }
         }
 
         public Vector2 GetCursorPosition()
@@ -92,33 +132,33 @@ namespace Comet
         {
             if (currentKeyboard.GetPressedKeys().Length > 0 && lastKeyboard.GetPressedKeys().Length == 0)
                 return true;
-            if (IsButton(button_character1))
+            if (IsInput(button_character1))
                 return true;
             return false;
         }
 
-        bool IsKey(Keys key)
+        public bool IsInput(Keys key)
         {
             if (currentKeyboard.IsKeyDown(key) && lastKeyboard.IsKeyUp(key))
                 return true;
             return false;
         }
 
-        bool IsKeyDown(Keys key)
+        public bool IsInputDown(Keys key)
         {
             if (currentKeyboard.IsKeyDown(key))
                 return true;
             return false;
         }
 
-        bool IsButton(Buttons button)
+        public bool IsInput(Buttons button)
         {
             if (currentGamepad1.IsButtonDown(button) && lastGamepad1.IsButtonUp(button))
                 return true;
             return false;
         }
 
-        bool IsButtonDown(Buttons button)
+        public bool IsInputDown(Buttons button)
         {
             if (currentGamepad1.IsButtonDown(button))
                 return true;

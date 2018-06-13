@@ -4,12 +4,12 @@
         <name>Comet</name>
     </assembly>
     <members>
-        <member name="T:Comet.BasicDraw">
+        <member name="T:Comet.DrawHelper">
             <summary>
             Used to draw programmatic visuals.
             </summary>
         </member>
-        <member name="M:Comet.BasicDraw.DrawRectangle(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,Microsoft.Xna.Framework.Color)">
+        <member name="M:Comet.DrawHelper.DrawRectangle(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,Microsoft.Xna.Framework.Color)">
             <summary>
             Draw a rectangle.
             </summary>
@@ -17,6 +17,24 @@
             <param name="position"></param>
             <param name="dimensions"></param>
             <param name="color"></param>
+        </member>
+        <member name="M:Comet.Character.InjectEffect(Comet.Effect)">
+            <summary>
+            This method will inject the given effect into a character.
+            It will also automatically sort the effect list so that the
+            effects ending first (namely those with the shortest delay + 
+            duration) are the ones at the end of the list.
+            </summary>
+            <param name="efct">The effect to inject on the character. </param>
+        </member>
+        <member name="M:Comet.Character.InjectEffect(Comet.Effect[])">
+            <summary>
+            This method will inject the given effect into a character.
+            It will also automatically sort the effect list so that the
+            effects ending first (namely those with the shortest delay + 
+            duration) are the ones at the end of the list.
+            </summary>
+            <param name="efcts">The effects to inject on the character. </param>
         </member>
         <member name="M:Comet.Fight.Update(Microsoft.Xna.Framework.GameTime)">
             <summary>
@@ -82,6 +100,53 @@
             </summary>
             <param name="gameTime">Provides a snapshot of timing values.</param>
         </member>
+        <member name="T:Comet.InputStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Comet.InputStatus.alliedCharacter1">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.alliedCharacter2">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.alliedCharacter3">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.alliedCharacter4">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.skill1">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.skill2">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.skill3">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.skill4">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.enemyCharacter1">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.enemyCharacter2">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.enemyCharacter3">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.enemyCharacter4">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.sideModifier">
+            <summary> </summary>
+        </member>
+        <member name="P:Comet.InputStatus.joinGame">
+            <summary> </summary>
+        </member>
         <member name="T:Comet.Program">
             <summary>
             The main class.
@@ -91,6 +156,20 @@
             <summary>
             The main entry point for the application.
             </summary>
+        </member>
+        <member name="T:Comet.SelectionState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Comet.SelectionState.User">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.SelectionState.Skill">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.SelectionState.Target">
+            <summary> </summary>
         </member>
         <member name="T:Comet.Stat">
             <summary>
@@ -129,6 +208,9 @@
             The defense status of a character.
             </summary>
         </member>
+        <member name="F:Comet.CharacterStatus.Down">
+            <summary> The character is inactive. </summary>
+        </member>
         <member name="F:Comet.CharacterStatus.Open">
             <summary> The character receives standard damage from attacks. </summary>
         </member>
@@ -161,17 +243,17 @@
             Types of Effect Activations.
             </summary>
         </member>
-        <member name="F:Comet.EffectActivationType.Instant">
-            <summary> Effect happens on application. </summary>
+        <member name="F:Comet.EffectActivationType.OnSelfInjection">
+            <summary> Effect activates upon being injected in the host. </summary>
         </member>
-        <member name="F:Comet.EffectActivationType.Delayed">
-            <summary> Effect happens after its delay. </summary>
+        <member name="F:Comet.EffectActivationType.OnOtherInjection">
+            <summary> Effect activates upon the host being injected a different effect. </summary>
         </member>
-        <member name="F:Comet.EffectActivationType.SenderReactive">
-            <summary> Effect happens after a character does something. </summary>
+        <member name="F:Comet.EffectActivationType.OnHostReactionPrepping">
+            <summary> Effect activates upon the host prepping a skill. </summary>
         </member>
-        <member name="F:Comet.EffectActivationType.TargetReactive">
-            <summary> Effect happens after a character is hit by something. </summary>
+        <member name="F:Comet.EffectActivationType.OnHostReactionCasting">
+            <summary> Effect activates upon the host casting a skill. </summary>
         </member>
     </members>
 </doc>

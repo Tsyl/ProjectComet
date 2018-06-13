@@ -5,20 +5,27 @@ namespace Comet
 {
     class Party
     {
-        readonly Color CHARACTER_UNSELECTED = Color.White;
-        readonly Color CHARACTER_SELECTED = Color.CornflowerBlue;
-        readonly Color CHARACTER_HEALTH = Color.Red;
-        readonly Color CHARACTER_STAMINA = Color.Yellow;
+        readonly Color CHARACTER_UNSELECTED = new Color(255, 255, 255);
+        readonly Color CHARACTER_SELECTED = new Color(0, 255, 0);
+        readonly Color CHARACTER_DOWN = Color.Purple;
+        readonly Color CHARACTER_HEALTH = new Color(255, 0, 0);
+        readonly Color CHARACTER_HEALTH_BG = new Color(100, 0, 0);
+        readonly Color CHARACTER_STAMINA = new Color(255, 255, 0);
+        readonly Color CHARACTER_STAMINA_BG = new Color(100, 100, 0);
 
+        public string name { get; set; }
         public Character[] characters { get; set;  }
+        public bool IsDown { get; set; }
 
-        public Party()
+        public Party(string name)
         {
             characters = new Character[4];
             characters[0] = new Character();
             characters[1] = new Character();
             characters[2] = new Character();
             characters[3] = new Character();
+
+            IsDown = false;
         }
 
         public void Prepare()
@@ -26,7 +33,7 @@ namespace Comet
             foreach(Character chr in characters)
             {
                 if (chr == null)
-                    break;
+                    continue;
 
                 chr.PrepareForFight();
             }
@@ -34,13 +41,18 @@ namespace Comet
 
         public void Update(GameTime gameTime)
         {
+            int charactersDown = 0;
             foreach (Character chr in characters)
             {
                 if (chr == null)
-                    break;
-
+                    continue;
                 chr.Update(gameTime);
+                if(chr.status == CharacterStatus.Down)
+                    charactersDown++;
             }
+
+            if (charactersDown == characters.Length)
+                IsDown = true;
         }
 
         public void DrawCharacterFrames(int pos, Character selectedCharacter, SpriteBatch spriteBatch, SpriteFont font)
@@ -62,14 +74,19 @@ namespace Comet
 
                 int healthPercent = (int)(chr.currentLife / chr.maxLife * 100);
                 int staminaPercent = (int)(chr.currentStamina / chr.maxStamina * 100);
+                int fullPercent = 100;
                 int castPercent;
 
                 if (chr == selectedCharacter)
                     spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_SELECTED);
-                else
+                else if (chr.status != CharacterStatus.Down)
                     spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_UNSELECTED);
+                else
+                    spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_DOWN);
+                DrawHelper.DrawFillRectangle(spriteBatch, lifePosition, fullPercent * 2, 20, CHARACTER_HEALTH_BG);
                 DrawHelper.DrawFillRectangle(spriteBatch, lifePosition, healthPercent * 2, 20, CHARACTER_HEALTH);
                 spriteBatch.DrawString(font, "Life", lifePosition, Color.Black);
+                DrawHelper.DrawFillRectangle(spriteBatch, staminaPosition, fullPercent * 2, 20, CHARACTER_STAMINA_BG);
                 DrawHelper.DrawFillRectangle(spriteBatch, staminaPosition, staminaPercent * 2, 20, CHARACTER_STAMINA);
                 spriteBatch.DrawString(font, "Stamina", staminaPosition, Color.Black);
                 if (chr.GetCurrentSkill() != null)

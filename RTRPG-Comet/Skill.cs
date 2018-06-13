@@ -21,6 +21,58 @@ namespace Comet
             effects[0] = new Effect();
         }
 
+        public Skill(string typeName)
+        {
+            if(typeName == "A")
+            {
+                name = "Basic Attack";
+                type = SkillType.Standard;
+                castTime = 2;
+                effects = new Effect[1];
+                effects[0] = new Effect("Attack", Stat.Health, EffectActivationType.OnSelfInjection, -5, 0, 0, 0, true);
+            }
+            if(typeName == "B")
+            {
+                name = "Poison";
+                type = SkillType.Special;
+                castTime = 3;
+                effects = new Effect[1];
+                effects[0] = new Effect("Poison", Stat.CurrentLife, EffectActivationType.OnSelfInjection, -5, 6, 2, 0, true);
+            }
+            if (typeName == "C")
+            {
+                name = "Debilitating Strike";
+                type = SkillType.Special;
+                castTime = 4;
+                effects = new Effect[1];
+                effects[0] = new Effect("Debilitate", Stat.CurrentStamina, EffectActivationType.OnSelfInjection, -20, 6, 0, 0, false);
+            }
+            if (typeName == "D")
+            {
+                name = "Debilitating Flask";
+                type = SkillType.Special;
+                castTime = 5;
+                effects = new Effect[1];
+                effects[0] = new Effect("Poison", Stat.CurrentStamina, EffectActivationType.OnSelfInjection, -15, 6, 2, 0, false);
+            }
+            if (typeName == "E")
+            {
+                name = "Prep Punish";
+                type = SkillType.Special;
+                castTime = 3;
+                effects = new Effect[1];
+                effects[0] = new Effect("Poison", Stat.Health, EffectActivationType.OnHostReactionPrepping, -30, 5, 0, 0, false);
+            }
+            if (typeName == "F")
+            {
+                name = "Prep Punish";
+                type = SkillType.Special;
+                castTime = 3;
+                effects = new Effect[1];
+                effects[0] = new Effect("Poison", Stat.Health, EffectActivationType.OnHostReactionCasting, -50, 3, 0, 0, false);
+            }
+        }
+
         public Skill(string _name, SkillType _type, float _castTime, Effect[] _effects)
         {
             name = _name;
@@ -56,7 +108,7 @@ namespace Comet
 
                 efct.Tune(user.power);
             }
-            target.InflictEffect(effects);
+            target.InjectEffect(effects);
         }
 
         public Skill Copy()

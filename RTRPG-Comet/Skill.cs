@@ -57,19 +57,19 @@ namespace Comet
             }
             if (typeName == "E")
             {
-                name = "Prep Punish";
+                name = "Caltrops";
                 type = SkillType.Special;
                 castTime = 3;
                 effects = new Effect[1];
-                effects[0] = new Effect("Poison", Stat.Health, EffectActivationType.OnHostReactionPrepping, -30, 5, 0, 0, false);
+                effects[0] = new Effect("Caltrops", Stat.Health, EffectActivationType.OnHostReactionPrepping, -30, 5, 0, 0, false);
             }
             if (typeName == "F")
             {
-                name = "Prep Punish";
+                name = "Sabotage";
                 type = SkillType.Special;
                 castTime = 3;
                 effects = new Effect[1];
-                effects[0] = new Effect("Poison", Stat.Health, EffectActivationType.OnHostReactionCasting, -50, 3, 0, 0, false);
+                effects[0] = new Effect("Sabotage", Stat.Health, EffectActivationType.OnHostReactionCasting, -50, 3, 0, 0, false);
             }
         }
 

@@ -5,6 +5,32 @@ namespace Comet
     /// <summary>
     /// 
     /// </summary>
+    public enum ModifierType
+    {
+        /// <summary> </summary>
+        Self = 1,
+        /// <summary> </summary>
+        Target = 2
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum DowningType
+    {
+        /// <summary> Character is downed when life is depleted. </summary>
+        Life,
+        /// <summary> Character is downed when stamina is depleted. </summary>
+        Stamina,
+        /// <summary> Character is downed when either stamina or life are depleted. </summary>
+        Either,
+        /// <summary> Character is downed when both stamina or life are depleted. </summary>
+        Both
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
     public enum SelectionState
     {
         /// <summary> </summary>
@@ -65,10 +91,21 @@ namespace Comet
         /// <summary> Skill is casted repeatedly until character is given another command or
         /// either the user or targets are unable to fight. </summary>
         Standard,
-        /// <summary> Standard skill that happens continually after its cast. </summary>
-        Steady,
         /// <summary> Skill that only affects a target once per cast. </summary>
         Special
+    };
+
+    /// <summary>
+    /// The types of characters a skill can target.
+    /// </summary>
+    public enum TargetingType
+    {
+        /// <summary> Can target its user. </summary>
+        Self = 1,
+        /// <summary> Can target allies. </summary>
+        Ally = 2,
+        /// <summary> Can target enemies. </summary>
+        Enemy = 4
     };
 
     /// <summary>

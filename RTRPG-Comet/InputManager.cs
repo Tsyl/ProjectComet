@@ -66,10 +66,10 @@ namespace Comet
         {
             players = new Player[6];
             players[0] = new KeyboardPlayer(
-                             Keys.Up,
                              Keys.Left,
                              Keys.Down,
                              Keys.Right,
+                             Keys.Up,
                              Keys.Q,
                              Keys.W,
                              Keys.E,
@@ -80,10 +80,10 @@ namespace Comet
                              Keys.F,
                              Keys.Space);
             players[1] = new KeyboardPlayer(
-                             Keys.NumPad5,
                              Keys.NumPad1,
                              Keys.NumPad2,
                              Keys.NumPad3,
+                             Keys.NumPad5,
                              Keys.U,
                              Keys.I,
                              Keys.O,
@@ -94,10 +94,10 @@ namespace Comet
                              Keys.OemSemicolon,
                              Keys.NumPad7);
             players[2] = new GamepadPlayer(
+                             Buttons.Y,
+                             Buttons.X,
                              Buttons.A,
                              Buttons.B,
-                             Buttons.X,
-                             Buttons.Y,
                              Buttons.DPadDown,
                              Buttons.DPadLeft,
                              Buttons.DPadRight,

@@ -9,9 +9,9 @@ namespace Comet
         readonly Color CHARACTER_SELECTED = new Color(0, 255, 0);
         readonly Color CHARACTER_DOWN = Color.Purple;
         readonly Color CHARACTER_HEALTH = new Color(255, 0, 0);
-        readonly Color CHARACTER_HEALTH_BG = new Color(100, 0, 0);
+        readonly Color CHARACTER_HEALTH_BG = new Color(150, 0, 0);
         readonly Color CHARACTER_STAMINA = new Color(255, 255, 0);
-        readonly Color CHARACTER_STAMINA_BG = new Color(100, 100, 0);
+        readonly Color CHARACTER_STAMINA_BG = new Color(150, 150, 0);
 
         public string name { get; set; }
         public Character[] characters { get; set;  }
@@ -19,11 +19,10 @@ namespace Comet
 
         public Party(string name)
         {
-            characters = new Character[4];
+            characters = new Character[3];
             characters[0] = new Character();
             characters[1] = new Character();
             characters[2] = new Character();
-            characters[3] = new Character();
 
             IsDown = false;
         }
@@ -72,8 +71,10 @@ namespace Comet
                 Vector2 staminaPosition = DrawHelper.GetCharacterPosition(true, numberOfCharacter + 1, pos, staminaOffset);
                 Vector2 skillBarPosition = DrawHelper.GetCharacterPosition(true, numberOfCharacter + 1, pos, 60);
 
-                int healthPercent = (int)(chr.currentLife / chr.maxLife * 100);
-                int staminaPercent = (int)(chr.currentStamina / chr.maxStamina * 100);
+                int healthPercent = (int)(chr.currentLife / chr.defaultLife * 100);
+                int staminaPercent = (int)(chr.currentStamina / chr.defaultStamina * 100);
+                int maxHealthPercent = (int)(chr.maxLife / chr.defaultLife * 100);
+                int maxStaminaPercent = (int)(chr.maxStamina / chr.defaultStamina * 100);
                 int fullPercent = 100;
                 int castPercent;
 
@@ -83,21 +84,24 @@ namespace Comet
                     spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_UNSELECTED);
                 else
                     spriteBatch.DrawString(font, chr.name, namePosition, CHARACTER_DOWN);
-                DrawHelper.DrawFillRectangle(spriteBatch, lifePosition, fullPercent * 2, 20, CHARACTER_HEALTH_BG);
+                DrawHelper.DrawFillRectangle(spriteBatch, lifePosition, maxHealthPercent * 2, 20, CHARACTER_HEALTH_BG);
                 DrawHelper.DrawFillRectangle(spriteBatch, lifePosition, healthPercent * 2, 20, CHARACTER_HEALTH);
+                DrawHelper.DrawRectangle(spriteBatch, lifePosition, fullPercent * 2, 20, CHARACTER_HEALTH);
                 spriteBatch.DrawString(font, "Life", lifePosition, Color.Black);
-                DrawHelper.DrawFillRectangle(spriteBatch, staminaPosition, fullPercent * 2, 20, CHARACTER_STAMINA_BG);
+                DrawHelper.DrawFillRectangle(spriteBatch, staminaPosition, maxStaminaPercent * 2, 20, CHARACTER_STAMINA_BG);
                 DrawHelper.DrawFillRectangle(spriteBatch, staminaPosition, staminaPercent * 2, 20, CHARACTER_STAMINA);
+                DrawHelper.DrawRectangle(spriteBatch, staminaPosition, fullPercent * 2, 20, CHARACTER_STAMINA);
                 spriteBatch.DrawString(font, "Stamina", staminaPosition, Color.Black);
                 if (chr.GetCurrentSkill() != null)
                 {
                     castPercent = 200 - (int)(chr.GetCurrentSkill().castTime / chr.GetSelectedSkill().castTime * 100) * 2;
                     DrawHelper.DrawFillRectangle(spriteBatch, skillBarPosition, castPercent, 20, Color.Aquamarine);
+                    DrawHelper.DrawRectangle(spriteBatch, skillBarPosition, fullPercent * 2, 20, Color.Aquamarine);
                     spriteBatch.DrawString(font, chr.GetCurrentSkill().name, skillBarPosition, Color.Black);
                 }
                 else
                 {
-                    spriteBatch.DrawString(font, "Inactive", skillBarPosition, Color.White);
+                    //spriteBatch.DrawString(font, "Inactive", skillBarPosition, Color.White);
                 }
             }
         }

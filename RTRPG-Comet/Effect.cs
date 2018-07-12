@@ -12,9 +12,11 @@ namespace Comet
         public Stat targetStat { get; set; }
         public EffectActivationType activationType { get; set; }
         public float value { get; set; }
-        public float duration { get; set; }
-        public float tickRate { get; set; }
         public float delay { get; set; }
+        public float standbyDuration { get; set; }
+        public float triggerDuration { get; set; }
+        public int triggerAmount { get; set; }
+        public float tickRate { get; set; }
         public bool isPersistent { get; set; }
         public bool isMultiafflict { get; set; }
 
@@ -31,22 +33,24 @@ namespace Comet
         }
 
         public Effect(  string _name, Stat _targetStat, EffectActivationType _activationType, 
-                        float _value, float _duration, float _tickRate, float _delay, 
-                        bool _isPersistent)
+                        float _value, float _standbyDuration, float _triggerDuration, int _triggerAmount,
+                        float _delay, bool _isPersistent)
         {
             name = _name;
             targetStat = _targetStat;
             activationType = _activationType;
             value = _value;
-            duration = _duration;
-            defaultDuration = duration;
-            tickRate = _tickRate;
+            standbyDuration = _standbyDuration;
+            triggerDuration = _triggerDuration;
+            defaultDuration = triggerDuration;
+            triggerAmount = _triggerAmount;
             delay = _delay;
             isPersistent = _isPersistent;
-            isMultiafflict = duration > 0 && tickRate > 0;
-            if(!isMultiafflict && duration > 0)
+            isMultiafflict = triggerDuration > 0 && tickRate > 0;
+
+            if(!isMultiafflict && triggerDuration > 0)
             {
-                tickRate = duration;
+                tickRate = triggerDuration;
             }
         }
 
@@ -57,12 +61,12 @@ namespace Comet
             targetStat = _effect.targetStat;
             activationType = _effect.activationType;
             value = _effect.value;
-            duration = _effect.duration;
-            defaultDuration = duration;
+            triggerDuration = _effect.triggerDuration;
+            defaultDuration = triggerDuration;
             tickRate = _effect.tickRate;
             // Set tick rate to one if some idiot wants to make an effect with a duration 
             // persistent and with a tick rate of zero for the heck of it.
-            if(duration > 0 && tickRate <= 0 && isPersistent)
+            if(triggerDuration > 0 && tickRate <= 0 && isPersistent)
             {
                 tickRate = 1;
             }
@@ -80,23 +84,23 @@ namespace Comet
                 // Effect is now active
 
                 // Instant (duration == 0)
-                if (duration <= 0 && isPersistent)
+                if (triggerDuration <= 0 && isPersistent)
                 {
                     // Effect happens.
                     Afflict();
                 }
                 
                 // Over-time (duration > 0)
-                if (duration > 0)
+                if (triggerDuration > 0)
                 {
-                    if (Math.Round(duration, 2) % tickRate == 0)
+                    if (Math.Round(triggerDuration, 2) % tickRate == 0)
                         // Effect happens.
                         Afflict();
 
-                    duration -= seconds;
+                    triggerDuration -= seconds;
                 }
 
-                if(duration <= 0)
+                if(triggerDuration <= 0)
                 {
                     if (!isPersistent)
                         // Effect is reversed.
@@ -173,6 +177,12 @@ namespace Comet
         public void Tune(float power)
         {
             value *= power / 100;
+        }
+
+        public void Tune(float power, float speed)
+        {
+            value *= power / 100;
+            delay *= speed / 100;
         }
 
         public Effect Copy()

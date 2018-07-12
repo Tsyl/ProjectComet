@@ -1,0 +1,169 @@
+ -Character Variables
+Texture2D 	portrait				// Character's portrait.
+	*Currently unused, but gotta find a way to send those.
+string 		name					// The character's name.
+float 		defaultLife				// Starting Life Points.
+	*Life persists throughout matches.
+float 		defaultStamina 			// Starting Stamina Points.
+	*Stamina is reset every new match.
+float 		defaultRegen			// Health regenerated each second.
+	*This means that if a character is missing life, they'll regenerate
+	stamina instead.
+
+DowningType downingType;			// The stat in which a character's
+									// availability relies on. If
+									// depleted, the character is downed.
+	-Life
+	-Stamina
+	-Either (Life or Stamina)
+	-Both	(Life and Stamina)
+
+// The default values of these 3 will either be 0 or 100.
+float 		power 					// Number that determines how strong
+									// are a character's abilities.
+float 		speed 					// Number that determines how fast
+									// are a character's abilities casted.
+float 		endurance				// Number that determines the
+									// effectiveness of abilities received.
+
+Skill[] skills { get; set; }		// Skills owned by the character.
+Effect[] effects { get; set; }		// The effects of the character. 
+	* This should only be used in the pipeline for characters that have
+	passives. (Which aren't implemented as of June 14th, btw)
+	
+-Skill Variables
+Texture2D 		icon				// Skill Icon
+string 			name				// Skill Name
+SkillType 		castingType 		// Type of casting.
+TargetingType 	targetingType		// Type of targetingType.
+	-Self = 1
+	-Ally = 2
+	-Enemy = 4
+	-Add the numbers to have multiple types. Ex: Self & Ally = 3.
+Effect[] 		effects				// The effects this skill applies.
+float 			castTime			// The time in seconds that a skill
+									// needs before it is casted.
+
+-Effect Variables // Current
+Texture2D 				icon { get; set; }
+string 					name { get; set; }
+Character 				host { get; set; }
+Stat 					targetStat { get; set; }
+EffectActivationType 	activationType { get; set; }
+float 					value { get; set; }
+float 					delay { get; set; }
+float 					standbyDuration { get; set; }
+float 					triggerDuration { get; set; }
+int 					triggerAmount { get; set; }
+float 					tickRate { get; set; }
+bool 					isPersistent { get; set; }
+bool 					isMultiafflict { get; set; }
+
+Skill/Effect v2 requirements:
+1-Skills can trigger automatically, or rather passively.
+	*Ex: Vanilla-Relief applying on break
+		 Marie-Double Up
+2-Effects can be permanent.
+	*Ex: Trois-Stalk debuff
+		 Trois-Shadow Somersault's shells
+3-Must allow for post-skill interactions, which can also be conditional.
+	*Ex: Breaking a Character restores X stamina. (Vanilla-Relief)
+4-These interactions can also apply to the target.
+	*Ex: If a target is undefended, give a wound. (Vanilla-Flurry)
+5-There can be more than one of these interactions.
+	*Ex: If defending, give a debuff that increases damage 
+	received, otherwise give a grievous wound. (Vanilla-Buster)
+		 Plakatos-Magical Bow
+5-These interactions can also apply when receiving skills.
+	*Ex: Normal attacks received are countered and their damage
+	partially reflected. (Vanilla-Stand)
+	*Ex: (Eliza-Raging Flames)
+6-Interactions can apply if the target has specific effects.
+	*Ex: X pierces give a wound. (Eliza-Shrapnel Assault)
+7-Should untargetable and dodge be the same thing? Maybe.
+	*Ex: Eliza-Crashlanding
+		 Marie-Spirit Renewal
+		 Zayden-Become Ethereal
+8-Interactions can tune effects using the skill's user and/or target's
+ stats.
+	*Ex: Rafael-Might Makes Right
+	*Ex: Dhun-Go Feral
+9-Skills should probably have timing windows to better convey what the
+ hell just happened or is going on, instead of being instant.
+	*Ex: Rafael-Sentinel
+	-After casting, characters have a window of time where they cannot
+	be controlled to allow for animations of skills.
+10-Effects can be made to stack.
+	*Ex: Eliza-Shrapnel Assault's pierce stacks
+		 Trois-Shadow Somersault's shells
+11-Skills can look at an user's effects, altering them and/or themselves
+ depending on how many X effects or stacks of effects you have.
+	*Ex: Trois-Shell Shock's damage per shell
+12-Passive skills can be casted for a different action
+	*Ex: Marie-Double Up's active
+13-Effects can render a character temporarily un-selectable but targetable.
+	*Ex: Stun
+14-Effects can be de-activated. This can also be done by skills.
+	*Ex: Marie-Spirit Renewal's removal of Kate.
+15-Skills can have more than one part to it.
+	*Ex: Marie-Inspire's dodge into constant buff.
+16-Skills can be AoE, targetting an entire party.
+	*Ex: Nika-Healing Bubble
+	*Ex: Gunhilda-Holy Spear
+17-Effects can copy/cut other effects from a host to their original caster.
+	*Ex: Zayden-Lifesteal's healing to Zayden.
+	-Effects can also create other effects using values from the original.
+		*Ex: Zayden-Lifesteal's damage to the host.
+	-Effects can also nullify other effects.
+		*Ex: Daisuke-Immunity
+18-Skills have a damage modifier when attacking against different
+ character statuses.
+	*Ex: A skill "Basic Attack" could deal 100% of its value to open
+	characters, while dealing 50% and 150% to defending and broken
+	ones respectively.
+	*Ex: Zayden-Phase
+	*Ex: Zayden-Ghost Dagger
+19-Skills can have cooldown
+	*Ex: Axel-Robotic Barrier
+	-This cooldown can apply after the ability is over instead of after
+	 casting.
+		*Ex: Gunhilda-Magical Barrier
+20-Skills can revive characters.
+	*Ex: Gunhilda-Death Sense
+21-Skills can be temporarily or permanently changed into other skills in
+ the system.
+	-Skills can also do this to other skills.
+		*Ex: Daisuke-Shapeshift
+22-Interactions can have success-chances.
+	*Ex: Dhun-Curse
+23-Interactions can change the target of a skill
+	*Ex: Dhun-Strike Fear
+	
+Character
+	-They contain a list of key skill info that is used to get the ACTUAL
+	 skills.
+		*This is mostly to accomodate Daisuke's cloning. But it can
+		optimize the game in dittos.
+	-When casting, they cast a copy of the ability, setting themselves as
+	 the user.
+	-Automatically casts passive skills at the beginning of a match.
+	-If the passive has triggers, add them to a reaction list.
+	-When a character casts a skill or gets an effect injected to them,
+	 look through the reaction list to trigger skills linked to said
+	 reactions.
+Skill
+	-
+	Interaction
+		-
+Effect
+	-
+
+MMR
+-Target: CurrentSkill.Value
+-Value: Interaction 1
+
+-Target: Health
+-Value: Interaction 2
+
+-Interaction 1 - Compare: User Current Stamina - Target Current Stamina
+-Interaction 2 - Compare: Interaction 1 - User Resistance

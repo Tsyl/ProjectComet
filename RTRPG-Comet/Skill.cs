@@ -8,14 +8,16 @@ namespace Comet
         public string name { get; set; }
         public Character user { get; set; }
         public Character target { get; set; }
-        public SkillType type { get; set; }
+        public SkillType castingType { get; set; }
+        public TargetingType targetingType { get; set; }
         public Effect[] effects { get; set; }
         public float castTime { get; set; }
 
         public Skill()
         {
             name = "Basic Attack";
-            type = SkillType.Standard;
+            castingType = SkillType.Standard;
+            targetingType = (TargetingType)4;
             castTime = 1;
             effects = new Effect[1];
             effects[0] = new Effect();
@@ -26,57 +28,57 @@ namespace Comet
             if(typeName == "A")
             {
                 name = "Basic Attack";
-                type = SkillType.Standard;
+                castingType = SkillType.Standard;
                 castTime = 2;
                 effects = new Effect[1];
-                effects[0] = new Effect("Attack", Stat.Health, EffectActivationType.OnSelfInjection, -5, 0, 0, 0, true);
+                effects[0] = new Effect("Attack", Stat.Health, EffectActivationType.OnSelfInjection, -5, 0, 0, 0, 0, true);
             }
             if(typeName == "B")
             {
                 name = "Poison";
-                type = SkillType.Special;
+                castingType = SkillType.Special;
                 castTime = 3;
                 effects = new Effect[1];
-                effects[0] = new Effect("Poison", Stat.CurrentLife, EffectActivationType.OnSelfInjection, -5, 6, 2, 0, true);
+                effects[0] = new Effect("Poison", Stat.CurrentLife, EffectActivationType.OnSelfInjection, -5, 0, 6, 2, 0, true);
             }
             if (typeName == "C")
             {
                 name = "Debilitating Strike";
-                type = SkillType.Special;
+                castingType = SkillType.Special;
                 castTime = 4;
                 effects = new Effect[1];
-                effects[0] = new Effect("Debilitate", Stat.CurrentStamina, EffectActivationType.OnSelfInjection, -20, 6, 0, 0, false);
+                effects[0] = new Effect("Debilitate", Stat.CurrentStamina, EffectActivationType.OnSelfInjection, -20, 0, 6, 0, 0, false);
             }
             if (typeName == "D")
             {
                 name = "Debilitating Flask";
-                type = SkillType.Special;
+                castingType = SkillType.Special;
                 castTime = 5;
                 effects = new Effect[1];
-                effects[0] = new Effect("Poison", Stat.CurrentStamina, EffectActivationType.OnSelfInjection, -15, 6, 2, 0, false);
+                effects[0] = new Effect("Poison", Stat.CurrentStamina, EffectActivationType.OnSelfInjection, -15, 0, 6, 2, 0, false);
             }
             if (typeName == "E")
             {
                 name = "Caltrops";
-                type = SkillType.Special;
+                castingType = SkillType.Special;
                 castTime = 3;
                 effects = new Effect[1];
-                effects[0] = new Effect("Caltrops", Stat.Health, EffectActivationType.OnHostReactionPrepping, -30, 5, 0, 0, false);
+                effects[0] = new Effect("Caltrops", Stat.Health, EffectActivationType.OnHostReactionPrepping, -30, 5, 5, 0, 0, false);
             }
             if (typeName == "F")
             {
                 name = "Sabotage";
-                type = SkillType.Special;
+                castingType = SkillType.Special;
                 castTime = 3;
                 effects = new Effect[1];
-                effects[0] = new Effect("Sabotage", Stat.Health, EffectActivationType.OnHostReactionCasting, -50, 3, 0, 0, false);
+                effects[0] = new Effect("Sabotage", Stat.Health, EffectActivationType.OnHostReactionCasting, -50, 3, 3, 0, 0, false);
             }
         }
 
         public Skill(string _name, SkillType _type, float _castTime, Effect[] _effects)
         {
             name = _name;
-            type = _type;
+            castingType = _type;
             castTime = _castTime;
             effects = _effects;
         }
@@ -87,7 +89,7 @@ namespace Comet
             name = _skill.name;
             user = _skill.user;
             target = _skill.target;
-            type = _skill.type;
+            castingType = _skill.castingType;
             effects = new Effect[_skill.effects.Length];
             castTime = _skill.castTime;
 

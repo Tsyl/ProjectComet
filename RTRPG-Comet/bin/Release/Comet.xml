@@ -157,6 +157,34 @@
             The main entry point for the application.
             </summary>
         </member>
+        <member name="T:Comet.ModifierType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Comet.ModifierType.Self">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.ModifierType.Target">
+            <summary> </summary>
+        </member>
+        <member name="T:Comet.DowningType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Comet.DowningType.Life">
+            <summary> Character is downed when life is depleted. </summary>
+        </member>
+        <member name="F:Comet.DowningType.Stamina">
+            <summary> Character is downed when stamina is depleted. </summary>
+        </member>
+        <member name="F:Comet.DowningType.Either">
+            <summary> Character is downed when either stamina or life are depleted. </summary>
+        </member>
+        <member name="F:Comet.DowningType.Both">
+            <summary> Character is downed when both stamina or life are depleted. </summary>
+        </member>
         <member name="T:Comet.SelectionState">
             <summary>
             
@@ -232,11 +260,22 @@
             <summary> Skill is casted repeatedly until character is given another command or
             either the user or targets are unable to fight. </summary>
         </member>
-        <member name="F:Comet.SkillType.Steady">
-            <summary> Standard skill that happens continually after its cast. </summary>
-        </member>
         <member name="F:Comet.SkillType.Special">
             <summary> Skill that only affects a target once per cast. </summary>
+        </member>
+        <member name="T:Comet.TargetingType">
+            <summary>
+            The types of characters a skill can target.
+            </summary>
+        </member>
+        <member name="F:Comet.TargetingType.Self">
+            <summary> Can target its user. </summary>
+        </member>
+        <member name="F:Comet.TargetingType.Ally">
+            <summary> Can target allies. </summary>
+        </member>
+        <member name="F:Comet.TargetingType.Enemy">
+            <summary> Can target enemies. </summary>
         </member>
         <member name="T:Comet.EffectActivationType">
             <summary>

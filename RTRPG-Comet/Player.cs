@@ -64,6 +64,7 @@ namespace Comet
             inputs.enemyCharacter2 =  manager.IsInput(input_alliedCharacter2) && manager.IsInputDown(input_sideModifier);
             inputs.enemyCharacter3 =  manager.IsInput(input_alliedCharacter3) && manager.IsInputDown(input_sideModifier);
             inputs.enemyCharacter4 =  manager.IsInput(input_alliedCharacter4) && manager.IsInputDown(input_sideModifier);
+            inputs.joinGame = manager.IsInput(input_joinGame);
         }
     }
 

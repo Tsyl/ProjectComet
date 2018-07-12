@@ -61,8 +61,8 @@ namespace Comet
                         p1SelectedUser = p1Party.characters[1].status != CharacterStatus.Down ? p1Party.characters[1] : null;
                     else if (player1.inputs.alliedCharacter3)
                         p1SelectedUser = p1Party.characters[2].status != CharacterStatus.Down ? p1Party.characters[2] : null;
-                    else if (player1.inputs.alliedCharacter4)
-                        p1SelectedUser = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
+                    //else if (player1.inputs.alliedCharacter4)
+                    //    p1SelectedUser = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
 
                     if (p1SelectedUser != null)
                         player1.selectState = SelectionState.Skill;
@@ -76,8 +76,8 @@ namespace Comet
                         p2SelectedUser = p2Party.characters[1].status != CharacterStatus.Down ? p2Party.characters[1] : null;
                     else if (player2.inputs.alliedCharacter3)
                         p2SelectedUser = p2Party.characters[2].status != CharacterStatus.Down ? p2Party.characters[2] : null;
-                    else if (player2.inputs.alliedCharacter4)
-                        p2SelectedUser = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
+                    //else if (player2.inputs.alliedCharacter4)
+                    //    p2SelectedUser = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
 
                     if (p2SelectedUser != null)
                         player2.selectState = SelectionState.Skill;
@@ -93,8 +93,8 @@ namespace Comet
                         p1SelectedUser = p1Party.characters[1].status != CharacterStatus.Down ? p1Party.characters[1] : null;
                     else if (player1.inputs.alliedCharacter3)
                         p1SelectedUser = p1Party.characters[2].status != CharacterStatus.Down ? p1Party.characters[2] : null;
-                    else if (player1.inputs.alliedCharacter4)
-                        p1SelectedUser = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
+                    //else if (player1.inputs.alliedCharacter4)
+                    //    p1SelectedUser = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
 
                     if (player1.inputs.skill1)
                         p1SelectedSkill = p1SelectedUser.skills[0];
@@ -117,10 +117,10 @@ namespace Comet
                         p2SelectedUser = p2Party.characters[0].status != CharacterStatus.Down ? p2Party.characters[0] : null;
                     else if (player2.inputs.alliedCharacter2)
                         p2SelectedUser = p2Party.characters[1].status != CharacterStatus.Down ? p2Party.characters[1] : null;
-                    else if (player2.inputs.alliedCharacter3)
-                        p2SelectedUser = p2Party.characters[2].status != CharacterStatus.Down ? p2Party.characters[2] : null;
-                    else if (player2.inputs.alliedCharacter4)
-                        p2SelectedUser = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
+                    //else if (player2.inputs.alliedCharacter3)
+                    //    p2SelectedUser = p2Party.characters[2].status != CharacterStatus.Down ? p2Party.characters[2] : null;
+                    //else if (player2.inputs.alliedCharacter4)
+                    //    p2SelectedUser = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
 
                     if (player2.inputs.skill1)
                         p2SelectedSkill = p2SelectedUser.skills[0];
@@ -156,8 +156,8 @@ namespace Comet
                         p1SelectedTarget = p2Party.characters[1].status != CharacterStatus.Down ? p2Party.characters[1] : null;
                     else if (player1.inputs.enemyCharacter3)
                         p1SelectedTarget = p2Party.characters[2].status != CharacterStatus.Down ? p2Party.characters[2] : null;
-                    else if (player1.inputs.enemyCharacter4)
-                        p1SelectedTarget = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
+                    //else if (player1.inputs.enemyCharacter4)
+                    //    p1SelectedTarget = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
 
                     if (player1.inputs.alliedCharacter1)
                         p1SelectedTarget = p1Party.characters[0].status != CharacterStatus.Down ? p1Party.characters[0] : null;
@@ -165,8 +165,8 @@ namespace Comet
                         p1SelectedTarget = p1Party.characters[1].status != CharacterStatus.Down ? p1Party.characters[1] : null;
                     else if (player1.inputs.alliedCharacter3)
                         p1SelectedTarget = p1Party.characters[2].status != CharacterStatus.Down ? p1Party.characters[2] : null;
-                    else if (player1.inputs.alliedCharacter4)
-                        p1SelectedTarget = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
+                    //else if (player1.inputs.alliedCharacter4)
+                    //    p1SelectedTarget = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
 
                     if (p1SelectedSkill == null)
                         player1.selectState = SelectionState.Skill;
@@ -207,8 +207,8 @@ namespace Comet
                         p2SelectedTarget = p1Party.characters[1].status != CharacterStatus.Down ? p1Party.characters[1] : null;
                     else if (player2.inputs.enemyCharacter3)
                         p2SelectedTarget = p1Party.characters[2].status != CharacterStatus.Down ? p1Party.characters[2] : null;
-                    else if (player2.inputs.enemyCharacter4)
-                        p2SelectedTarget = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
+                    //else if (player2.inputs.enemyCharacter4)
+                    //    p2SelectedTarget = p1Party.characters[3].status != CharacterStatus.Down ? p1Party.characters[3] : null;
 
                     if (player2.inputs.alliedCharacter1)
                         p2SelectedTarget = p2Party.characters[0].status != CharacterStatus.Down ? p2Party.characters[0] : null;
@@ -216,8 +216,8 @@ namespace Comet
                         p2SelectedTarget = p2Party.characters[1].status != CharacterStatus.Down ? p2Party.characters[1] : null;
                     else if (player2.inputs.alliedCharacter3)
                         p2SelectedTarget = p2Party.characters[2].status != CharacterStatus.Down ? p2Party.characters[2] : null;
-                    else if (player2.inputs.alliedCharacter4)
-                        p2SelectedTarget = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
+                    //else if (player2.inputs.alliedCharacter4)
+                    //    p2SelectedTarget = p2Party.characters[3].status != CharacterStatus.Down ? p2Party.characters[3] : null;
 
                     if (p2SelectedSkill == null)
                         player2.selectState = SelectionState.Skill;

@@ -16,6 +16,7 @@ namespace Comet
         public float maxStamina { get; set; }
         public float regen { get; set; }
         public CharacterStatus status;
+        public DowningType downingType;
 
         public float power { get; set; }
         public float speed { get; set; }
@@ -36,6 +37,7 @@ namespace Comet
             defaultStamina = 100;
             defaultRegen = 0.1f;
             status = CharacterStatus.Open;
+            downingType = DowningType.Either;
 
             power = 100;
             speed = 100;
@@ -68,23 +70,22 @@ namespace Comet
         {
             float seconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            // Alive Loop
             if (status != CharacterStatus.Down)
             {
-                if (currentStamina <= 0 || currentLife <= 0)
-                {
-                    status = CharacterStatus.Down;
-                }
-
-                if(regen > 0)
+                // Health Regen
+                if (regen > 0)
                 {
                     currentStamina += regen*seconds;
                 }
 
+                // Casting Delay
                 if (currentSkill != null)
                 {
                     currentSkill.castTime -= seconds;
                 }
 
+                // Effects
                 for (int effectNum = 0; effectNum < effects.Length; effectNum++)
                 {
                     if (effects[effectNum] == null)
@@ -96,12 +97,13 @@ namespace Comet
                         effects[effectNum] = null;
                 }
 
+                // Casting
                 if (selectedSkill != null && currentSkill.target.status != CharacterStatus.Down)
                 {
                     if (currentSkill.castTime <= 0)
                     {
                         currentSkill.Cast();
-                        if (currentSkill.type == SkillType.Standard)
+                        if (currentSkill.castingType == SkillType.Standard)
                         {
                             currentSkill = selectedSkill.Copy();
                         }
@@ -115,8 +117,29 @@ namespace Comet
                 {
                     GiveCommand(null);
                 }
+
+                // Check if requirements are met for downed
+                switch(downingType)
+                {
+                    case DowningType.Life:
+                        if (currentLife <= 0)
+                            status = CharacterStatus.Down;
+                        break;
+                    case DowningType.Stamina:
+                        if (currentStamina <= 0)
+                            status = CharacterStatus.Down;
+                        break;
+                    case DowningType.Either:
+                        if (currentStamina <= 0 || currentLife <= 0)
+                            status = CharacterStatus.Down;
+                        break;
+                    case DowningType.Both:
+                        if (currentStamina <= 0 && currentLife <= 0)
+                            status = CharacterStatus.Down;
+                        break;
+                }
             }
-            else
+            else // Down Loop
             {
 
             }
@@ -143,7 +166,7 @@ namespace Comet
             {
                 if (effects[effectNum] != null)
                 {
-                    if (effects[effectNum].delay + effects[effectNum].duration > efct.delay + efct.duration)
+                    if (effects[effectNum].delay + effects[effectNum].triggerDuration > efct.delay + efct.triggerDuration)
                     {
                         Effect tmp = effects[effectNum].Copy();
                         effects[effectNum] = efct;

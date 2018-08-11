@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_ArmCannon.wav</SourceFile>
+  <SourceTime>2018-08-10T14:05:55.3156928-04:00</SourceTime>
+  <DestFile>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/bin/DesktopGL/assets/skill_sfx_ArmCannon.xnb</DestFile>
+  <DestTime>2018-08-11T13:15:07.1400775-04:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2017-03-01T10:05:36-05:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

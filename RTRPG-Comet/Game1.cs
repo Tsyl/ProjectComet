@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +15,10 @@ namespace Comet
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        ContentContainer contentLoader;
+        Texture2D[] icons;
+        SoundEffect[] sfxs;
 
         /// <summary>
         /// States of the Game.
@@ -26,7 +34,9 @@ namespace Comet
         };
         /// <summary> Current state of the game. </summary>
         public GameState State { get; set; }
+
         InputManager input;
+        DrawHelper drawHelper;
 
         Menu menu;
         Fight fight;
@@ -38,7 +48,10 @@ namespace Comet
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            
+
+            /*graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;*/
+
             Content.RootDirectory = "Content";
         }
 
@@ -54,12 +67,14 @@ namespace Comet
                 Window.Title = "Comet_d";
             #else
                 Window.Title = "Comet";
-            #endif
+#endif
 
-            DrawHelper.graphicsDevice = GraphicsDevice;
+            drawHelper = DrawHelper.GetInstance();
+            drawHelper.Initialize(GraphicsDevice);
             input = InputManager.GetInstance();
             input.Initialize();
             players = new Player[2];
+
             base.Initialize();
         }
 
@@ -70,9 +85,69 @@ namespace Comet
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            string contentFilename = "Content\\CometContent.json";
+            Character[] characters = new Character[1];
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // Read Content file and deserialize data.
+            try
+            {
+                StreamReader sr = new StreamReader(contentFilename);
+                characters = JsonConvert.DeserializeObject<List<Character>>(sr.ReadToEnd()).ToArray();
+            }
+            catch (FileNotFoundException e)
+            {
+                throw e.GetBaseException();
+            }
+            catch
+            {
+                throw new System.Exception("We found the file, but something else went wrong...");
+            }
+            
+            icons = new Texture2D[characters.Length * 4];
+            sfxs = new SoundEffect[characters.Length * 4];
+
+            // Load all data
+            // Fonts
             fightFont = Content.Load<SpriteFont>("test");
+
+            // Character Icons and Sound Effects.
+            foreach (Character chr in characters)
+            {
+                foreach (Skill skl in chr.skills)
+                {
+                    if(skl.iconName != null)
+                    {
+                        try
+                        {
+                            skl.icon = Content.Load<Texture2D>(skl.iconName);
+                        }
+                        catch { }
+                    }
+
+                    if (skl.sfxName != null)
+                    {
+                        try
+                        {
+                            skl.sfx = Content.Load<SoundEffect>(skl.sfxName);
+                        }
+                        catch { }
+                    }
+                }
+            }
+
+            /*
+            skillIcons[0] = Content.Load<Texture2D>("assets/skill_icon_MightMakesRight");
+            skillIcons[1] = Content.Load<Texture2D>("assets/skill_icon_Scorch");
+            skillIcons[2] = Content.Load<Texture2D>("assets/skill_icon_Sentinel");
+            skillIcons[3] = Content.Load<Texture2D>("assets/skill_icon_GraveyardBash");
+            skillIcons[4] = Content.Load<Texture2D>("assets/skill_icon_Stalk");
+            skillIcons[5] = Content.Load<Texture2D>("assets/skill_icon_DaggerStrike");
+            skillIcons[6] = Content.Load<Texture2D>("assets/skill_icon_ShadowSomersault");
+            skillIcons[7] = Content.Load<Texture2D>("assets/skill_icon_ShellShock");
+            */
+
+            contentLoader = new ContentContainer(characters);
         }
 
         /// <summary>
@@ -111,7 +186,7 @@ namespace Comet
 
                 if (players[1] != null)
                 {
-                    fight = new Fight(players[0], players[1]);
+                    fight = new Fight(players[0], players[1], contentLoader.GetParty(0), contentLoader.GetParty(1));
                 }
 
                 if (fight != null)
@@ -146,11 +221,11 @@ namespace Comet
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
+            
             spriteBatch.Begin();
             if (State == GameState.Menu)
             {
-                
+                drawHelper.DrawLine(spriteBatch, Vector2.Zero, new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.Red);
             }
 
             if (State == GameState.Fight)
@@ -163,6 +238,7 @@ namespace Comet
 
             }
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

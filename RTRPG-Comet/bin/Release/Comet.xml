@@ -9,14 +9,76 @@
             Used to draw programmatic visuals.
             </summary>
         </member>
+        <member name="M:Comet.DrawHelper.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Comet.DrawHelper.Initialize(Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            
+            </summary>
+            <param name="_graphicsDevice"></param>
+        </member>
+        <member name="M:Comet.DrawHelper.DrawLine(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Comet.DrawHelper.DrawLine(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,Microsoft.Xna.Framework.Color)">
+            <summary>
+            
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+            <param name="thickness"></param>
+            <param name="color"></param>
+        </member>
         <member name="M:Comet.DrawHelper.DrawRectangle(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,Microsoft.Xna.Framework.Color)">
             <summary>
-            Draw a rectangle.
+            Draw empty rectangle.
             </summary>
             <param name="spriteBatch"></param>
             <param name="position"></param>
-            <param name="dimensions"></param>
+            <param name="width"></param>
+            <param name="height"></param>
             <param name="color"></param>
+        </member>
+        <member name="M:Comet.DrawHelper.DrawRectangle(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Color)">
+            <summary>
+            
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="position"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="thickness"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Comet.DrawHelper.DrawFillRectangle(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,Microsoft.Xna.Framework.Color)">
+            <summary>
+            
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="position"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Comet.DrawHelper.GetVerticalScreenSegments(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Split the screen vertically and return the segments.
+            </summary>
+            <param name="segments"></param>
+            <param name="xOffset"></param>
+            <param name="yOffset"></param>
+            <returns></returns>
         </member>
         <member name="M:Comet.Character.InjectEffect(Comet.Effect)">
             <summary>
@@ -35,6 +97,35 @@
             duration) are the ones at the end of the list.
             </summary>
             <param name="efcts">The effects to inject on the character. </param>
+        </member>
+        <member name="T:Comet.Effect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Comet.Effect.#ctor(System.String,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Audio.SoundEffect,System.String,Comet.Stat,Comet.CharacterStatus,Comet.EffectActivationType,System.Single,System.Single,System.Single,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="_name"></param>
+            <param name="_icon"></param>
+            <param name="_sfx"></param>
+            <param name="_description"></param>
+            <param name="_targetStat">The stat this effect is modifying.</param>
+            <param name="_hostStatusRequirement">The status requirement of the host.</param>
+            <param name="_activationType">The activation requirement for the effect.</param>
+            <param name="_value">The value that will be added to the target stat.</param>
+            <param name="_standbyDuration">The duration in which the effect will wait for its requirements to be met.</param>
+            <param name="_triggerDuration">The duration for which the effect will be in place.</param>
+            <param name="_triggerAmount">The number of times the value is added to its host during trigger duration.</param>
+            <param name="_delay">The duration before the ability enters standby.</param>
+            <param name="_isPersistent">Whether the effect persists after its trigger duration is over.</param>
+        </member>
+        <member name="M:Comet.Effect.Trigger">
+            <summary>
+            Affects the host, substarcts one from the trigger amount and resets the tick rate if
+            the former is higher than 0.
+            </summary>
         </member>
         <member name="M:Comet.Fight.Update(Microsoft.Xna.Framework.GameTime)">
             <summary>
@@ -157,34 +248,6 @@
             The main entry point for the application.
             </summary>
         </member>
-        <member name="T:Comet.ModifierType">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Comet.ModifierType.Self">
-            <summary> </summary>
-        </member>
-        <member name="F:Comet.ModifierType.Target">
-            <summary> </summary>
-        </member>
-        <member name="T:Comet.DowningType">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Comet.DowningType.Life">
-            <summary> Character is downed when life is depleted. </summary>
-        </member>
-        <member name="F:Comet.DowningType.Stamina">
-            <summary> Character is downed when stamina is depleted. </summary>
-        </member>
-        <member name="F:Comet.DowningType.Either">
-            <summary> Character is downed when either stamina or life are depleted. </summary>
-        </member>
-        <member name="F:Comet.DowningType.Both">
-            <summary> Character is downed when both stamina or life are depleted. </summary>
-        </member>
         <member name="T:Comet.SelectionState">
             <summary>
             
@@ -199,45 +262,36 @@
         <member name="F:Comet.SelectionState.Target">
             <summary> </summary>
         </member>
-        <member name="T:Comet.Stat">
+        <member name="T:Comet.KnockoutCondition">
             <summary>
-            Character Stats
+            
             </summary>
         </member>
-        <member name="F:Comet.Stat.Health">
-            <summary> </summary>
+        <member name="F:Comet.KnockoutCondition.Life">
+            <summary> Character is downed when life is depleted. </summary>
         </member>
-        <member name="F:Comet.Stat.CurrentLife">
-            <summary> </summary>
+        <member name="F:Comet.KnockoutCondition.Stamina">
+            <summary> Character is downed when stamina is depleted. </summary>
         </member>
-        <member name="F:Comet.Stat.MaxLife">
-            <summary> </summary>
+        <member name="F:Comet.KnockoutCondition.Either">
+            <summary> Character is downed when either stamina or life are depleted. </summary>
         </member>
-        <member name="F:Comet.Stat.CurrentStamina">
-            <summary> </summary>
-        </member>
-        <member name="F:Comet.Stat.MaxStamina">
-            <summary> </summary>
-        </member>
-        <member name="F:Comet.Stat.Regen">
-            <summary> </summary>
-        </member>
-        <member name="F:Comet.Stat.Power">
-            <summary> </summary>
-        </member>
-        <member name="F:Comet.Stat.Speed">
-            <summary> </summary>
-        </member>
-        <member name="F:Comet.Stat.Endurance">
-            <summary> </summary>
+        <member name="F:Comet.KnockoutCondition.Both">
+            <summary> Character is downed when both stamina or life are depleted. </summary>
         </member>
         <member name="T:Comet.CharacterStatus">
             <summary>
             The defense status of a character.
             </summary>
         </member>
+        <member name="F:Comet.CharacterStatus.Any">
+            <summary> The character has any status. Made for effects </summary>
+        </member>
         <member name="F:Comet.CharacterStatus.Down">
             <summary> The character is inactive. </summary>
+        </member>
+        <member name="F:Comet.CharacterStatus.Shocked">
+            <summary> The character is shocked. </summary>
         </member>
         <member name="F:Comet.CharacterStatus.Open">
             <summary> The character receives standard damage from attacks. </summary>
@@ -277,6 +331,11 @@
         <member name="F:Comet.TargetingType.Enemy">
             <summary> Can target enemies. </summary>
         </member>
+        <member name="T:Comet.ResourceType">
+            <summary>
+            Types of resources used to cast skills.
+            </summary>
+        </member>
         <member name="T:Comet.EffectActivationType">
             <summary>
             Types of Effect Activations.
@@ -293,6 +352,47 @@
         </member>
         <member name="F:Comet.EffectActivationType.OnHostReactionCasting">
             <summary> Effect activates upon the host casting a skill. </summary>
+        </member>
+        <member name="T:Comet.Stat">
+            <summary>
+            Character Stats
+            </summary>
+        </member>
+        <member name="F:Comet.Stat.Health">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.CurrentLife">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.MaxLife">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.CurrentStamina">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.MaxStamina">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.CurrentTension">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.MaxTension">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Regen">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Status">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Power">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Speed">
+            <summary> </summary>
+        </member>
+        <member name="F:Comet.Stat.Endurance">
+            <summary> </summary>
         </member>
     </members>
 </doc>

@@ -20,3 +20,255 @@
 /processorParam:TextureFormat=Compressed
 /build:test.spritefont
 
+#begin assets/menu_sfx_BeforeBattle.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/menu_sfx_BeforeBattle.wav
+
+#begin assets/menu_sfx_Character_Select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/menu_sfx_Character_Select.wav
+
+#begin assets/menu_sfx_Countdown.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/menu_sfx_Countdown.wav
+
+#begin assets/menu_sfx_Join.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/menu_sfx_Join.wav
+
+#begin assets/menu_sfx_Movement.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/menu_sfx_Movement.wav
+
+#begin assets/menu_sfx_Select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/menu_sfx_Select.wav
+
+#begin assets/menu_sfx_Start.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/menu_sfx_Start.wav
+
+#begin assets/skill_icon_DaggerStrike.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_DaggerStrike.png
+
+#begin assets/skill_icon_GraveyardSlam.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_GraveyardSlam.png
+
+#begin assets/skill_icon_MightMakesRight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_MightMakesRight.png
+
+#begin assets/skill_icon_Scorch.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_Scorch.png
+
+#begin assets/skill_icon_Sentinel.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_Sentinel.png
+
+#begin assets/skill_icon_ShadowSomersault.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_ShadowSomersault.png
+
+#begin assets/skill_icon_ShellShock.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_ShellShock.png
+
+#begin assets/skill_icon_Stalk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:assets/skill_icon_Stalk.png
+
+#begin assets/skill_sfx_ArmCannon.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_ArmCannon.wav
+
+#begin assets/skill_sfx_Crashlanding.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_Crashlanding.wav
+
+#begin assets/skill_sfx_DaggerStrike.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_DaggerStrike.wav
+
+#begin assets/skill_sfx_DeathSense.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_DeathSense.wav
+
+#begin assets/skill_sfx_Flight.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_Flight.wav
+
+#begin assets/skill_sfx_GraveyardSlam.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_GraveyardSlam.wav
+
+#begin assets/skill_sfx_HealingBubble.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_HealingBubble.wav
+
+#begin assets/skill_sfx_HeavenlyArrow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_HeavenlyArrow.wav
+
+#begin assets/skill_sfx_HolySpear.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_HolySpear.wav
+
+#begin assets/skill_sfx_MagicalBarrier.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_MagicalBarrier.wav
+
+#begin assets/skill_sfx_NaniteEnhancement.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_NaniteEnhancement.wav
+
+#begin assets/skill_sfx_PartyHeal.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_PartyHeal.wav
+
+#begin assets/skill_sfx_RagingFlames.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_RagingFlames.wav
+
+#begin assets/skill_sfx_RoboticBarrier.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_RoboticBarrier.wav
+
+#begin assets/skill_sfx_Scorch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_Scorch.wav
+
+#begin assets/skill_sfx_SelfRepair.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_SelfRepair.wav
+
+#begin assets/skill_sfx_Sentinel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_Sentinel.wav
+
+#begin assets/skill_sfx_ShellShock.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_ShellShock.wav
+
+#begin assets/skill_sfx_ShrapnelAssault.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:assets/skill_sfx_ShrapnelAssault.wav
+

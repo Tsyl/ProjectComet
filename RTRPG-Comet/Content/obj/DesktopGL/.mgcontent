@@ -5,5 +5,39 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/test.spritefont</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/menu_sfx_BeforeBattle.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/menu_sfx_Character_Select.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/menu_sfx_Countdown.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/menu_sfx_Join.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/menu_sfx_Movement.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/menu_sfx_Select.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/menu_sfx_Start.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_DaggerStrike.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_GraveyardSlam.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_MightMakesRight.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_Scorch.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_Sentinel.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_ShadowSomersault.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_ShellShock.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_icon_Stalk.png</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_ArmCannon.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_Crashlanding.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_DaggerStrike.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_DeathSense.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_Flight.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_GraveyardSlam.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_HealingBubble.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_HeavenlyArrow.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_HolySpear.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_MagicalBarrier.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_NaniteEnhancement.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_PartyHeal.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_RagingFlames.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_RoboticBarrier.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_Scorch.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_SelfRepair.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_Sentinel.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_ShellShock.wav</File>
+    <File>C:/Users/Ralik/Source/Repos/ProjectComet/RTRPG-Comet/Content/assets/skill_sfx_ShrapnelAssault.wav</File>
   </SourceFiles>
 </SourceFileCollection>
